@@ -1,0 +1,21 @@
+body{
+    background-color: rgba(235, 240, 254, 0.5);
+    color: rgba(63, 63, 63, 1);
+}
+
+.box{
+    background-color: white;
+    border-radius: 10px;
+}
+
+.input{
+    color: rgba(118, 118, 118, 1);
+}
+
+.main-box{
+
+}
+
+.w-60{
+    width: 60%;
+}

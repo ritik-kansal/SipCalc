@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Sip Calculator</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body>
+        <div class="container vh-100 d-flex align-items-center justify-content-center">
+
+            <div class="row w-100">
+                <div class="col-12 col-lg-8">
+                    <div class="box main-box me-5 p-5 h-100">
+                        <div class="fs-3 mb-5">
+                            Systematic investmant plan(SIP) Calculator
+                        </div>
+
+                        <div class="input">
+                            <label for="customRange1" class="form-label fs-5">Monthly Investment</label>
+                            <div class="row ">
+                                <div class="col-9 d-flex align-items-center justify-content-center">
+                                    <input type="range" min="500" max="100000" step="500" class="w-100 " id="customRange1" onchange="jsfunction('customRange1Val',this.value)" oninput="jsfunction('customRange1Val',this.value)" ondrag="jsfunction('customRange1Val',this.value)" value="25000">
+                                </div>
+                                <div class="col-3 d-flex align-items-center">
+                                    <div class="w-60">
+                                        <input type="text" id="customRange1Val" value="25000" class="w-100" style="text-align: center;">
+                                    </div>
+                                    &nbsp;
+                                                                        INR
+                                </div>
+                            </div>
+
+                            <label for="customRange2" class="form-label fs-5">Expected Rate of Interest</label>
+                            <div class="row ">
+                                <div class="col-9 d-flex align-items-center justify-content-center">
+                                    <input type="range" min="1" max="50" step="0.1" class="w-100" id="customRange2" onchange="jsfunction('customRange2Val',this.value)" oninput="jsfunction('customRange2Val',this.value)" ondrag="jsfunction('customRange2Val',this.value)" value="12">
+                                </div>
+                                <div class="col-3 d-flex align-items-center">
+                                    <div class="w-60">
+                                        <input type="text" id="customRange2Val" value="12" class="w-100" style="text-align: center;">
+                                    </div>
+                                    &nbsp;
+                                                                        %
+                                </div>
+                            </div>
+
+                            <label for="customRange3" class="form-label fs-5">Time Period(in Years)</label>
+                            <div class="row ">
+                                <div class="col-9 d-flex align-items-center justify-content-center">
+                                    <input type="range" min="1" max="50" class="w-100" id="customRange3" onchange="jsfunction('customRange3Val',this.value)" oninput="jsfunction('customRange3Val',this.value)" ondrag="jsfunction('customRange3Val',this.value)" value="10">
+                                </div>
+                                <div class="col-3 d-flex align-items-center">
+                                    <div class="w-60">
+                                        <input type="text" id="customRange3Val" value="10" class="w-100" style="text-align: center;">
+                                    </div>
+                                    &nbsp;
+                                                                        Years
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-4 box pt-4">
+                    <div>
+                        <canvas id="myChart"></canvas>
+                    </div>
+                    
+                    <div class="px-3 py-4">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                Amount Invested :
+                            </div>
+                            <div id="Invested">
+                                ₹30,00,000
+                            </div>
+                        </div>
+    
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                Est. Returns :
+                            </div>
+                            <div id="Returns">
+                                ₹28,08,477
+                            </div>
+                        </div>
+    
+                        <div class="d-flex justify-content-between fw-semibold">
+                            <div>
+                                Total Value :
+                            </div>
+                            <div id="Value">
+                                ₹58,08,477
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        <script>
+            const ctx = document.getElementById('myChart');
+
+            const data = {
+                labels: [
+                    'Invested',
+                    'Est. Returns'
+                    
+                ],
+                datasets: [
+                    {
+                        label: 'Dataset 1',
+                        data: [3000000,2808477],
+                        
+                        backgroundColor:["#000000","#dddddd"] 
+                    }
+                ]
+            };
+
+            const config = {
+                type: 'doughnut',
+                data: data,
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top'
+                        },
+                        title: {
+                            display: false,
+                        },
+
+                    }
+                }
+            };
+
+
+            var chart = new Chart(ctx, config);
+        
+
+            function jsfunction(id, val) {
+                document.getElementById(id).value = val;
+
+                var values = calcInvestment();
+                console.log(values);
+                chart.data.datasets[0].data[0] = values[0];
+                chart.data.datasets[0].data[1] = values[1];
+                console.log((chart.data.datasets[0].data))
+                // alert("hi")
+                // animate update of 'March' from 90 to 50.
+                chart.update();
+
+                document.getElementById("Invested").innerHTML = convertToCurrency(values[0])
+                document.getElementById("Returns").innerHTML = convertToCurrency(values[1])
+                document.getElementById("Value").innerHTML = convertToCurrency(values[0] + values[1])
+            }
+
+            function calcInvestment(){
+                var monthlyPrincipal = parseInt(document.getElementById("customRange1Val").value)
+                var interest = parseFloat(document.getElementById("customRange2Val").value)/1200
+                var time = parseInt(document.getElementById("customRange3Val").value)*12
+                
+                // console.log(monthlyPrincipal,time,interest)
+                // console.log(`${monthlyPrincipal}X ({[1 +${interest} ]^{${time}} – 1} / ${interest}) x (1 + ${interest})`)
+                var invested = monthlyPrincipal*time;
+                var returns = parseInt(monthlyPrincipal * ((Math.pow((1 + interest),time) - 1) / interest) * (1 + interest)) - invested
+                // M = P × ({[1 + i]n – 1} / i) × (1 + i).
+                
+                return [invested,returns];
+            }
+
+            function convertToCurrency(val){
+                return val.toLocaleString('en-IN', {
+                    maximumFractionDigits: 0,
+                    style: 'currency',
+                    currency: 'INR'
+                });
+            }
+        </script>
+
+        
+    </body>
+</html>
