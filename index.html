@@ -7,7 +7,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
         <link rel="stylesheet" href="css/main.css">
     </head>
-    <body>
+    <body class="pb-5">
         <!-- Image and text -->
 <nav class="navbar navbar-light bg-light" style="box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.05);">
     <a class="navbar-brand mx-auto" href="#">
@@ -17,10 +17,10 @@
         <div class="text-center f-38 pt-50">
             Calculate the future value of your SIP investment
         </div>
-        <div class="mt-40 container vh-75 d-flex align-items-center ">
+        <div class="mt-40 w-100 vh-75 d-flex align-items-center justify-content-center">
             <div class="row w-100">
-                <div class="col-12 col-lg-8">
-                    <div class="box main-box mr-40 px-20 h-100 pt-40">
+                <div class="col-12 col-lg-8 mt-40">
+                    <div class="box main-box mr-40 px-20 h-100 pt-40 mr-sm-0 pb-4">
                         <div class="f-20">
                             Systematic investmant plan(SIP) Calculator
                         </div>
@@ -28,10 +28,10 @@
                         <div class="input mt-30">
                             <label for="customRange1" class="form-label">Monthly Investment</label>
                             <div class="row">
-                                <div class="col-9 d-flex align-items-center justify-content-center">
+                                <div class="col-lg-9 col-6 d-flex align-items-center justify-content-center">
                                     <input type="range" min="500" max="100000" step="500" class="w-100 " id="customRange1" onchange="jsfunction('customRange1Val',this.value)" oninput="jsfunction('customRange1Val',this.value)" ondrag="jsfunction('customRange1Val',this.value)" value="25000">
                                 </div>
-                                <div class="col-3 d-flex align-items-center">
+                                <div class="col-lg-3 col-6 d-flex align-items-center">
                                     <div class="w-60">
                                         <input type="text" id="customRange1Val" value="25000" class="w-100" style="text-align: center;">
                                     </div>
@@ -42,10 +42,10 @@
 
                             <label for="customRange2" class="form-label mt-25">Expected Rate of Interest</label>
                             <div class="row ">
-                                <div class="col-9 d-flex align-items-center justify-content-center">
+                                <div class="col-lg-9 col-6 d-flex align-items-center justify-content-center">
                                     <input type="range" min="1" max="50" step="0.1" class="w-100" id="customRange2" onchange="jsfunction('customRange2Val',this.value)" oninput="jsfunction('customRange2Val',this.value)" ondrag="jsfunction('customRange2Val',this.value)" value="12">
                                 </div>
-                                <div class="col-3 d-flex align-items-center">
+                                <div class="col-lg-3 col-6 d-flex align-items-center">
                                     <div class="w-60">
                                         <input type="text" id="customRange2Val" value="12" class="w-100" style="text-align: center;">
                                     </div>
@@ -56,10 +56,10 @@
 
                             <label for="customRange3" class="form-label mt-25">Time Period(in Years)</label>
                             <div class="row ">
-                                <div class="col-9 d-flex align-items-center justify-content-center">
+                                <div class="col-lg-9 col-6 d-flex align-items-center justify-content-center">
                                     <input type="range" min="1" max="50" class="w-100" id="customRange3" onchange="jsfunction('customRange3Val',this.value)" oninput="jsfunction('customRange3Val',this.value)" ondrag="jsfunction('customRange3Val',this.value)" value="10">
                                 </div>
-                                <div class="col-3 d-flex align-items-center">
+                                <div class="col-lg-3 col-6 d-flex align-items-center">
                                     <div class="w-60">
                                         <input type="text" id="customRange3Val" value="10" class="w-100" style="text-align: center;">
                                     </div>
@@ -71,41 +71,44 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-lg-4 box pt-4">
-                    <div class="bg-off-white">
-                        <div style="width: 250px;" class=" mx-auto">
-                            <canvas id="myChart"></canvas>
+                <div class="col-12 col-lg-4 ">
+                    <div class="box pt-4 mt-40 px-20">
+                        <div class="bg-off-white">
+                            <div style="width: 250px;" class=" mx-auto">
+                                <canvas id="myChart"></canvas>
+                            </div>
+                        </div>
+                        
+                        <div class="px-3 py-4 f-14">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    Amount Invested :
+                                </div>
+                                <div id="Invested">
+                                    ₹30,00,000
+                                </div>
+                            </div>
+        
+                            <div class="d-flex justify-content-between mt-20">
+                                <div>
+                                    Est. Returns :
+                                </div>
+                                <div id="Returns">
+                                    ₹28,08,477
+                                </div>
+                            </div>
+        
+                            <div class="d-flex justify-content-between fw-semibold mt-20">
+                                <div>
+                                    Total Value :
+                                </div>
+                                <div id="Value">
+                                    ₹58,08,477
+                                </div>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="px-3 py-4 f-14">
-                        <div class="d-flex justify-content-between">
-                            <div>
-                                Amount Invested :
-                            </div>
-                            <div id="Invested">
-                                ₹30,00,000
-                            </div>
-                        </div>
-    
-                        <div class="d-flex justify-content-between mt-20">
-                            <div>
-                                Est. Returns :
-                            </div>
-                            <div id="Returns">
-                                ₹28,08,477
-                            </div>
-                        </div>
-    
-                        <div class="d-flex justify-content-between fw-semibold mt-20">
-                            <div>
-                                Total Value :
-                            </div>
-                            <div id="Value">
-                                ₹58,08,477
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

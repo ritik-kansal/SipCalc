@@ -73,5 +73,11 @@ body{
 }
 
 .vh-75{
-    height: 60vh;
+    min-height: 60vh;
 }
+
+@media (max-width: 768px) {
+    .mr-sm-0{
+        margin-right: 0px !important;
+    }
+  }
