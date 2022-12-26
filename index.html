@@ -14,12 +14,12 @@
       <img src="./images/logo.svg" width="148" class="d-inline-block align-top" alt="">
     </a>
   </nav>
-        <div class="text-center f-38 pt-50">
+        <div class="text-center f-38 pt-50 d-lg-block d-none">
             Calculate the future value of your SIP investment
         </div>
-        <div class="mt-40 w-100 vh-75 d-flex align-items-center justify-content-center">
+        <div class="container-lg mt-40 w-100 vh-75 d-flex align-items-center justify-content-center">
             <div class="row w-100">
-                <div class="col-12 col-lg-8 mt-40">
+                <div class="col-12 col-lg-8 mt-40 order-lg-1 order-2">
                     <div class="box main-box mr-40 px-20 h-100 pt-40 mr-sm-0 pb-4">
                         <div class="f-20">
                             Systematic investmant plan(SIP) Calculator
@@ -33,7 +33,7 @@
                                 </div>
                                 <div class="col-lg-3 col-6 d-flex align-items-center">
                                     <div class="w-60">
-                                        <input type="text" id="customRange1Val" value="25000" class="w-100" style="text-align: center;">
+                                        <input type="number" id="customRange1Val" value="25000" class="w-100" style="text-align: center;" onchange="updatedViaText('customRange1',this.value)" min="500" max="100000" onkeyup="if(parseInt(this.value)>100000){ this.value =100000; return false; }else if(parseInt(this.value)<1){ this.value =1; return false; }">
                                     </div>
                                     &nbsp;
                                                                         INR
@@ -47,7 +47,7 @@
                                 </div>
                                 <div class="col-lg-3 col-6 d-flex align-items-center">
                                     <div class="w-60">
-                                        <input type="text" id="customRange2Val" value="12" class="w-100" style="text-align: center;">
+                                        <input type="number" id="customRange2Val" value="12" class="w-100" style="text-align: center;" onchange="updatedViaText('customRange2',this.value)" min="1" max="50" onkeyup="if(parseInt(this.value)>50){ this.value =50; return false; }else if(parseInt(this.value)<1){ this.value =1; return false; }">
                                     </div>
                                     &nbsp;
                                                                         %
@@ -57,11 +57,11 @@
                             <label for="customRange3" class="form-label mt-25">Time Period(in Years)</label>
                             <div class="row ">
                                 <div class="col-lg-9 col-6 d-flex align-items-center justify-content-center">
-                                    <input type="range" min="1" max="50" class="w-100" id="customRange3" onchange="jsfunction('customRange3Val',this.value)" oninput="jsfunction('customRange3Val',this.value)" ondrag="jsfunction('customRange3Val',this.value)" value="10">
+                                    <input type="range" min="1" max="50" class="w-100" id="customRange3" onchange="jsfunction('customRange3Val',this.value)" oninput="jsfunction('customRange3Val',this.value)" ondrag="jsfunction('customRange3Val',this.value)" value="10" >
                                 </div>
                                 <div class="col-lg-3 col-6 d-flex align-items-center">
                                     <div class="w-60">
-                                        <input type="text" id="customRange3Val" value="10" class="w-100" style="text-align: center;">
+                                        <input type="number" id="customRange3Val" value="10" class="w-100" style="text-align: center;" onchange="updatedViaText('customRange3',this.value)" min="1" max="50" onkeyup="if(parseInt(this.value)>50){ this.value =50; return false; }else if(parseInt(this.value)<1){ this.value =1; return false; }">
                                     </div>
                                     &nbsp;
                                                                         Years
@@ -71,7 +71,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-lg-4 ">
+                <div class="col-12 col-lg-4 order-lg-2 order-1">
                     <div class="box pt-4 mt-40 px-20">
                         <div class="bg-off-white">
                             <div style="width: 250px;" class=" mx-auto">
@@ -155,6 +155,10 @@
 
             var chart = new Chart(ctx, config);
         
+            function updatedViaText(id,val){
+                document.getElementById(id).value = val;
+                jsfunction(id+"Val",val);
+            }
 
             function jsfunction(id, val) {
                 document.getElementById(id).value = val;
